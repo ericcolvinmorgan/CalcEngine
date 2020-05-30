@@ -1,0 +1,10 @@
+$theme-colors: (
+  "primary": #00897b,
+  "secondary": #fcc02a,
+  "darksecondary": #343a40
+);
+
+$font-family-sans-serif: "Nunito",sans-serif;
+$font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

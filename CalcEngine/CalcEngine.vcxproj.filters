@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\CalcTree">
+      <UniqueIdentifier>{524f71b0-3aec-4c1a-a6ef-d108b09e11ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CalcTree">
+      <UniqueIdentifier>{433ebe97-482a-4473-88ab-7599c2d319a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ExcelFunctions">
+      <UniqueIdentifier>{591bd577-729b-4f8d-ac19-a4addf278005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ExcelFunctions">
+      <UniqueIdentifier>{e61e42b6-7242-4fd5-83cf-281567c3d0d5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="node.cpp">
+      <Filter>Source Files\CalcTree</Filter>
+    </ClCompile>
+    <ClCompile Include="reference.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="binary_operators.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cell_detail.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="calc_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="formula_detail.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="io_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="reader_csv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cell_node.cpp">
+      <Filter>Source Files\CalcTree</Filter>
+    </ClCompile>
+    <ClCompile Include="excel_function_node.cpp">
+      <Filter>Source Files\CalcTree</Filter>
+    </ClCompile>
+    <ClCompile Include="function_node.cpp">
+      <Filter>Source Files\CalcTree</Filter>
+    </ClCompile>
+    <ClCompile Include="number_node.cpp">
+      <Filter>Source Files\CalcTree</Filter>
+    </ClCompile>
+    <ClCompile Include="reference_node.cpp">
+      <Filter>Source Files\CalcTree</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="node.h">
+      <Filter>Header Files\CalcTree</Filter>
+    </ClInclude>
+    <ClInclude Include="reference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="calc_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="calc_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cell_detail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="formula_detail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="reader_csv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="io_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="binary_operators.h">
+      <Filter>Header Files\ExcelFunctions</Filter>
+    </ClInclude>
+    <ClInclude Include="excel_functions_enum.h">
+      <Filter>Header Files\ExcelFunctions</Filter>
+    </ClInclude>
+    <ClInclude Include="cell_node.h">
+      <Filter>Header Files\CalcTree</Filter>
+    </ClInclude>
+    <ClInclude Include="excel_function_node.h">
+      <Filter>Header Files\CalcTree</Filter>
+    </ClInclude>
+    <ClInclude Include="function_node.h">
+      <Filter>Header Files\CalcTree</Filter>
+    </ClInclude>
+    <ClInclude Include="number_node.h">
+      <Filter>Header Files\CalcTree</Filter>
+    </ClInclude>
+    <ClInclude Include="reference_node.h">
+      <Filter>Header Files\CalcTree</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
