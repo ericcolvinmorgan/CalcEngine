@@ -13,3 +13,4 @@ phases:
 artifacts:
   files:
     - '**/*'
+  base-directory: 'Web.Client/client/build'
