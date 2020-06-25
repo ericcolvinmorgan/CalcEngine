@@ -10,11 +10,11 @@ import Main from './components/main'
 function App() {
   const [lightMode, setLightMode] = useState(useMediaQuery('(prefers-color-scheme: light)'));
   
-  const history = createBrowserHistory();
-  const path = (/#!(\/.*)$/.exec(location.hash) || [])[1];
-  if (path) {
-      history.replace(path);
-  }
+  //const history = createBrowserHistory();
+  //const path = (/#!(\/.*)$/.exec(location.hash) || [])[1];
+  //if (path) {
+  //    history.replace(path);
+  //}
   
   const theme = React.useMemo(
     () =>
