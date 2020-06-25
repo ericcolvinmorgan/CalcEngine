@@ -197,7 +197,7 @@ const Main = ({ match, lightMode, setLightMode }: any) => {
         <div className={classes.toolbar} />
         <RouterSwitch>
           <Route exact path="/">
-            <div>Welcome</div> 
+            <div>Welcome - <Link to={match.path + "/blockmanager"} style={{ textDecoration: 'none', color: 'inherit' }}></Link></div> 
           </Route>
           <Route path={match.path + "/blockmanager"} component={BlockManager}  />
         </RouterSwitch>
