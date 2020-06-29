@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - cd Web.Client/client
+      - echo Installing source NPM dependencies...
+      - npm install
+  build:
+    commands:
+      - echo Build started on `date`
+      - npm run build
+      - ls
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'Web.Client/client/build'
