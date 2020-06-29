@@ -1,3 +1,4 @@
+import { createBrowserHistory } from 'history';
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
@@ -9,6 +10,12 @@ import Main from './components/main'
 function App() {
   const [lightMode, setLightMode] = useState(useMediaQuery('(prefers-color-scheme: light)'));
   
+  const history = createBrowserHistory();
+  const path = (/#!(\/.*)$/.exec(window.location.hash) || [])[1];
+  if (path) {
+      history.replace(path);
+  }
+
   const theme = React.useMemo(
     () =>
       createMuiTheme({

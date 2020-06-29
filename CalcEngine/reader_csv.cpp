@@ -52,6 +52,10 @@ std::vector<std::string> reader_csv::read_line()
 				row_end = true;
 			}
 			break;
+			
+			//Characters to skip
+			case '\r': {}
+			break;
 
 			default:
 			{

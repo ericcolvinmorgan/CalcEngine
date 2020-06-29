@@ -3,7 +3,6 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <stack>
-#include <execution>
 
 using json = nlohmann::json;
 
@@ -19,8 +18,6 @@ calc_manager::~calc_manager()
 
 bool calc_manager::load_from_json(std::string fileLocation)
 {
-	std::size_t count = 0;
-
 	//auto x = [&count](int depth, json::parse_event_t event, json& parsed) {
 	//	if (event == json::parse_event_t::object_end)
 	//	{
@@ -57,8 +54,6 @@ bool calc_manager::load_from_json(std::string fileLocation)
 
 bool calc_manager::run_calc(io_manager& io_manager)
 {	
-	double earningsUpdate = 0;
-
 	for (std::string &entry : io_manager._input_order)
 	{
 		io_manager.update_entries(entry);

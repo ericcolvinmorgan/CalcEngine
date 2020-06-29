@@ -10,7 +10,7 @@ calc_tree::cell_node::cell_node(const nlohmann::json& json) : calc_tree::node(js
 	{
 		_worksheet = "";
 	}
-	else {
+	else { 
 		json.at("Worksheet").get_to(_worksheet);
 	}
 
