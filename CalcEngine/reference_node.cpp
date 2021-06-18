@@ -24,6 +24,7 @@ bool calc_tree::reference_node::get_value(std::unordered_map<std::string, cell_d
 template<typename T>
 inline bool calc_tree::reference_node::_ProcessNode(std::unordered_map<std::string, cell_detail> cell_details, std::unordered_map<std::string, excel_functions_enum> excel_functions, std::vector<std::vector<T>>& values)
 {
+	(void)excel_functions; //Currently unused in this node type.
 	int startRow = 0, startCol = 0, endRow = 0, endCol = 0;
 	std::string rangeWorksheet = "";
 	if (_left_node != nullptr)

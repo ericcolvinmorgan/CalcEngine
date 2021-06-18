@@ -53,65 +53,16 @@ void cell_detail::calculate(std::unordered_map<std::string, cell_detail> cell_de
 		_dirty = false;
 	}
 		break;
+
+		case cell_type::string:
+		//TODO - Handle string logic
+		break;
+
 	case cell_type::formula:
 		if (_formula_tree != nullptr)
 		{
-			////TODO - Implement Calculate Logic
-			//std::stack<std::shared_ptr<CalcTree::Node>> toOrder, ordered;
-			//toOrder.push(_formulaTree);
-
-			////Determine Postfix Calc Order
-			//while (!toOrder.empty())
-			//{
-			//	std::shared_ptr<CalcTree::Node> currentNode = toOrder.top();
-			//	toOrder.pop();
-			//	ordered.push(currentNode);
-
-			//	for (std::shared_ptr<CalcTree::Node> dependency : currentNode->GetDependencyNodes())
-			//	{
-			//		toOrder.push(dependency);
-			//	}
-			//}
-
-			////Navigate and calculate postfix order stack
-			//std::vector<std::shared_ptr<CalcTree::Node>> arguments;
-			//arguments.reserve(255);
-			//while (!ordered.empty())
-			//{
-			//	std::shared_ptr<CalcTree::Node> currentNode = ordered.top();
-			//	ordered.pop();
-
-			//	if (currentNode->is_function())
-			//	{
-			//		//Process
-			//		std::vector<std::vector<double>> values;
-			//		if (currentNode->GetValue(cell_details, excel_functions, values))
-			//		{
-			//			//TODO - Navigate entire vector (for the reference nodes)
-			//			_calculatedValue = values[0][0];
-			//		}
-			//		arguments.clear();
-			//	}
-			//	else
-			//	{
-			//		arguments.push_back(currentNode);
-			//	}
-			//}
-
-			//Process Cell Node - Token represents specific cell from which to get value
-
-			//Process excel_function_node - Token represent function to be run, no associated left/right node, 
-			//instead arguements vector includes all nodes needed to run function.
-
-			//Process function_node - Token represents operator and left right nodes indicate various other node types
-
-			//Process number_node - Token represents value
-
-			//Process reference_node - Items like : for token, then left and right node
-			//TODO - These will need to return a range of doubles for processing.
 			std::vector<std::vector<double>> values;
 			_formula_tree->get_value(cell_details, excel_functions, values);
-			//TODO - Navigate entire vector (for the reference nodes)
 			_calculated_value = values[0][0];
 		}
 		break;

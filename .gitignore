@@ -342,3 +342,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 Web.API/venv
+Web.API/api/.chalice/deployed

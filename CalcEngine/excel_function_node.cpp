@@ -17,6 +17,9 @@ calc_tree::excel_function_node::excel_function_node(const nlohmann::json& json) 
 
 bool calc_tree::excel_function_node::get_value(std::unordered_map<std::string, cell_detail> cell_details, std::unordered_map<std::string, excel_functions_enum> excel_functions, std::vector<std::vector<std::string>>& value)
 {
+	(void)cell_details; //Unused in this node type.
+	(void)excel_functions; //Unused in this node type.
+	(void)value; //Unused in this node type.
 	return false;
 }
 
@@ -65,11 +68,7 @@ inline bool calc_tree::excel_function_node::_ProcessNode(std::unordered_map<std:
 
 	else if (_token == "COUNT")
 	{
-		int count = 0;
-		for (double arg : args)
-		{
-			count += 1;
-		}
+		int count = args.size();
 		value = count;
 	}
 

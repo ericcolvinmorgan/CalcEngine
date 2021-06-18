@@ -56,7 +56,7 @@ public:
 
 private:
     std::ifstream _ifstream;
-    std::streamsize _file_length = 0;
+    std::streamsize _stream_length = 0;
     unsigned short _buffer_position = 0;
     std::streamsize _buffer_length = 0;
     char _buffer[CSV_READER_BUFFER_LENGTH] = { 0 };

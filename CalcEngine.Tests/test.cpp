@@ -1,34 +1,13 @@
 #include "pch.h"
-#include "../CalcEngine/calcManager.h"
+#include "../CalcEngine/calc_manager.h"
 #include "../CalcEngine/helpers.h"
 
 TEST(TestCaseName, TestName) {
-
-	int items = 10;
-	double initialEarnings = 1000;
-	std::vector<std::unordered_map<std::string, double>> values(items);
-	for (int i = 0; i < items; i++)
-	{
-		std::unordered_map<std::string, double> entry;
-		entry.emplace(std::piecewise_construct,
-			std::forward_as_tuple("Calculation-F7"),
-			std::forward_as_tuple(initialEarnings));
-
-		entry.emplace(std::piecewise_construct,
-			std::forward_as_tuple("Accum E and P and Taxes-D7"),
-			std::forward_as_tuple(0));
-
-		entry.emplace(std::piecewise_construct,
-			std::forward_as_tuple("Accum E and P and Taxes-D17"),
-			std::forward_as_tuple(500));
-
-		values[i] = entry;
-	}
-	
+	io_manager value_manager("..\\CalcEngine.Tests\\EPDataTypes.csv", "..\\CalcEngine.Tests\\EPValues.csv");
 	calc_manager manager;
 	//EXPECT_TRUE(manager.LoadFromJSON("..\\CalcEngine.Tests\\Basic1.json"));
-	EXPECT_TRUE(manager.load_from_json("C:\\Users\\ericm\\Documents\\source\\repos\\CalcEngine\\ExcelParser.Tests\\TestFiles\\TestFile.json"));
-	EXPECT_TRUE(manager.run_calc(values));
+	EXPECT_TRUE(manager.load_from_json("..\\CalcEngine.Tests\\TestFile.json"));
+	EXPECT_TRUE(manager.run_calc(value_manager));
 	//EXPECT_EQ(1, 1);
 }
 

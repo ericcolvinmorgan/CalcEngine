@@ -33,9 +33,6 @@
     <ClCompile Include="reference.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="binary_operators.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -5,7 +5,7 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra -g")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
-file(GLOB SOURCES "*.cpp")
+file(GLOB_RECURSE SOURCES "*.cpp")
 add_library(CalcEngine ${SOURCES})
 include_directories(/mnt/c/Users/ericm/source/repos/vcpkg/vcpkg/installed/x86-windows/include/ /usr/include)
 

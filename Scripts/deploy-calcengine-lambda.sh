@@ -16,5 +16,5 @@ if [ $2 = 'Deploy' ]
             --function-name "arn:aws:lambda:us-west-2:542100369852:function:calc-engine" \
             --zip-file fileb://./CalcEngine.Lambda/CalcEngine.Lambda.zip
 
-        aws lambda invoke --function-name calc-engine --payload '{"s3bucket": "calc-build-calc-definitions", "s3jsonkey":"TestFile.json", "s3datatypeskey":"EPDataTypes.csv", "s3valueskey":"EPValues.csv" }' --cli-binary-format raw-in-base64-out ../.testoutput/output.txt && cat ../.testoutput/output.txt
+        #aws lambda invoke --function-name calc-engine --payload '{"s3bucket": "calc-build-calc-definitions", "s3jsonkey":"TestFile.json", "s3datatypeskey":"EPDataTypes.csv", "s3valueskey":"EPValues.csv" }' --cli-binary-format raw-in-base64-out ../.testoutput/output.txt && cat ../.testoutput/output.txt
 fi

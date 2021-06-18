@@ -52,6 +52,7 @@ cell_detail calc_tree::cell_node::get_cell_detail(std::unordered_map<std::string
 template<typename T>
 inline bool calc_tree::cell_node::_process_node(std::unordered_map<std::string, cell_detail> cell_details, std::unordered_map<std::string, excel_functions_enum> excel_functions, std::vector<std::vector<T>>& values)
 {	
+	(void)excel_functions; //Unused in this node type.
 	std::string ref(_token);
 	ref.erase(std::remove(ref.begin(), ref.end(), '$'), ref.end());
 	

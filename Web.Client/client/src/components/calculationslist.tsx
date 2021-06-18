@@ -18,25 +18,27 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { MdDelete as DeleteIcon, MdFilter as FilterListIcon, MdEdit } from 'react-icons/md';
 
 interface Data {
-    name: string,
-    date: string,
+    calculation_id: string,
+    requested_by: string,
+    requested_on: string,
     status: string
 }
 
 function createData(
-  name: string,
-  date: string,
+  calculation_id: string,
+  requested_by: string,
+  requested_on: string,
   status: string
 ): Data {
-  return { name, date, status };
+  return {calculation_id, requested_by, requested_on, status };
 }
 
 const rows = [
-  createData('Block 1', Date.now().toString(), 'Processing' ),
-  createData('Block 2', Date.now().toString(), 'Error' ),
-  createData('Block 3', Date.now().toString(), 'Ready' ),
-  createData('Block 4', Date.now().toString(), 'Ready' ),
-  createData('Block 5', Date.now().toString(), 'Ready' ),
+  createData('1', 'Eric', Date.now().toString(), 'Processing' ),
+  createData('2', 'Tom', Date.now().toString(), 'Error' ),
+  createData('3', 'Bob', Date.now().toString(), 'Ready' ),
+  createData('4', 'Jane', Date.now().toString(), 'Ready' ),
+  createData('5', 'Emily', Date.now().toString(), 'Ready' ),
 ];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -78,8 +80,8 @@ interface HeadCell {
 }
 
 const headCells: HeadCell[] = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
-  { id: 'date', numeric: false, disablePadding: false, label: 'Date' },
+  { id: 'requested_by', numeric: false, disablePadding: true, label: 'Requested By' },
+  { id: 'requested_on', numeric: false, disablePadding: false, label: 'Requested On' },
   { id: 'status', numeric: false, disablePadding: false, label: 'Status' }
 ];
 
@@ -181,7 +183,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-            Calc Blocks
+            Requested Calculations
         </Typography>
       )}
       {numSelected > 0 ? (
@@ -190,13 +192,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
             <DeleteIcon />
           </IconButton>
         </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )}
+      ) : (<></>)}
     </Toolbar>
   );
 };
@@ -230,10 +226,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function BlockList() {
+export default function CalculationsList() {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('name');
+  const [orderBy, setOrderBy] = React.useState<keyof Data>('requested_by');
   const [selected, setSelected] = React.useState<string[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -246,7 +242,7 @@ export default function BlockList() {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = rows.map((n) => n.requested_by);
       setSelected(newSelecteds);
       return;
     }
@@ -310,17 +306,17 @@ export default function BlockList() {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.calculation_id.toString());
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.calculation_id.toString())}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.calculation_id.toString()}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -330,9 +326,9 @@ export default function BlockList() {
                         />
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
+                        {row.requested_by}
                       </TableCell>
-                      <TableCell>{row.date}</TableCell>
+                      <TableCell>{row.requested_on}</TableCell>
                       <TableCell>{row.status}</TableCell>
                       <TableCell><MdEdit /></TableCell>
                     </TableRow>

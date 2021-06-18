@@ -1,10 +1,12 @@
 import { createBrowserHistory } from 'history';
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-
+import { useCalculationsContext } from './providers/calculationsProvider'
+import { CalculationsReducer } from './reducers/calculationsReducer';
+import { CalculationsProvider } from './providers/calculationsProvider';
 import Main from './components/main'
 
 function App() {
@@ -33,14 +35,24 @@ function App() {
     [lightMode],
   );
 
+  const initialState = {
+    items: []
+  }
+  
+  const pathTest = process.env.REACT_APP_WEBAPI_CALCULATIONS_ENDPOINT;
+  const reducer = useReducer(CalculationsReducer, initialState)
+  const {state} = useCalculationsContext();
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <div>Welcome</div> 
+            <div>Welcome - {pathTest}</div> 
           </Route>
-          <Route path="/testing" render={(props) => <Main {...props} lightMode={lightMode} setLightMode={setLightMode} />}  />
+          <CalculationsProvider value={reducer}>          
+          <Route path="/portal" render={(props) => <Main {...props} lightMode={lightMode} setLightMode={setLightMode} />}  />
+          </CalculationsProvider>
         </Switch>
       </BrowserRouter>
     </ThemeProvider>

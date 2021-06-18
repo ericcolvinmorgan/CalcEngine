@@ -1,11 +1,10 @@
 //import './../scss/main.scss'
 import * as React from 'react';
 import { AiOutlineMenuUnfold } from 'react-icons/ai'
-import { MdMoveToInbox as InboxIcon, MdMail as MailIcon, MdMenu as MenuIcon, MdChevronLeft as ChevronLeftIcon, MdChevronRight as ChevronRightIcon } from 'react-icons/md'
+import { MdChevronLeft as ChevronLeftIcon, MdChevronRight as ChevronRightIcon } from 'react-icons/md'
 import { BsGearFill } from 'react-icons/bs'
 import { FiCpu } from 'react-icons/fi'
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import { Route, Switch as RouterSwitch, } from 'react-router';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -200,6 +199,7 @@ const Main = ({ match, lightMode, setLightMode }: any) => {
             <div>Welcome - <Link to={match.path + "/blockmanager"} style={{ textDecoration: 'none', color: 'inherit' }}></Link></div> 
           </Route>
           <Route path={match.path + "/blockmanager"} component={BlockManager}  />
+          <Route path={match.path + "/calculations"} component={Calculations}  />
         </RouterSwitch>
       </main>
     </div>

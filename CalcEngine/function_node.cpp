@@ -12,6 +12,9 @@ calc_tree::function_node::function_node(const nlohmann::json& json) : calc_tree:
 bool calc_tree::function_node::get_value(std::unordered_map<std::string, cell_detail> cell_details, std::unordered_map<std::string, excel_functions_enum> excel_functions, std::vector<std::vector<std::string>>& value)
 {
 	//TODO - Implement
+	(void)cell_details; //Currently unused in this node type.
+	(void)excel_functions; //Currently unused in this node type.
+	(void)value; //Currently unused in this node type.
 	return false;
 }
 
@@ -23,7 +26,7 @@ bool calc_tree::function_node::get_value(std::unordered_map<std::string, cell_de
 template<typename T>
 inline bool calc_tree::function_node::_ProcessNode(std::unordered_map<std::string, cell_detail> cell_details, std::unordered_map<std::string, excel_functions_enum> excel_functions, std::vector<std::vector<T>>& values)
 {
-	double calcValues[2];
+	double calcValues[2] = {0.};
 	if (_left_node != nullptr)
 	{
 		std::vector<std::vector<double>> nodeValue;

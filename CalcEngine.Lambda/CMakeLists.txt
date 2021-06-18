@@ -5,7 +5,7 @@ set(AWS_LAMBDA_CMAKE "/home/eric/out/lib/aws-lambda-runtime/cmake/")
 set(CMAKE_PREFIX_PATH "${AWS_LAMBDA_CMAKE};${CMAKE_PREFIX_PATH}")
 
 find_package(aws-lambda-runtime REQUIRED)
-find_package(AWSSDK COMPONENTS s3)
+find_package(AWSSDK COMPONENTS s3 sqs)
 
 
 add_executable(CalcEngine.Lambda "main.cpp")

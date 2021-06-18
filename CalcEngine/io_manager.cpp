@@ -35,7 +35,7 @@ void io_manager::_build_data_types(std::string data_types_path)
 	for (auto entry : reader)
 	{
 		std::vector<std::string> params;
-		for (int i = 3; i < entry.size(); i++)
+		for (std::size_t i = 3; i < entry.size(); i++)
 		{
 			params.push_back(entry[i]);
 		}
@@ -55,6 +55,10 @@ void io_manager::_build_data_types(std::string data_types_path)
 			_output_types.emplace(std::piecewise_construct,
 				std::forward_as_tuple(entry[0]),
 				std::forward_as_tuple(io_type{ entry[1], entry_type, params }));
+			break;
+
+		case io_type::type_enum::invalid:
+			//TODO - Determine how to handle.
 			break;
 		}
 	}
@@ -77,7 +81,7 @@ void io_manager::_build_inputs(std::string values_path)
 		{
 			std::unordered_map<std::string, io_value> records;
 
-			for (int i = 1; i < entry.size(); i++)
+			for (size_t i = 1; i < entry.size(); i++)
 			{
 				bool is_error = true;
 				bool is_numeric = false;
@@ -88,10 +92,10 @@ void io_manager::_build_inputs(std::string values_path)
 					is_numeric = true;
 					is_error = false;
 				}
-				catch (std::invalid_argument ex) {
+				catch (std::invalid_argument &ex) {
 					is_error = false;
 				}
-				catch (std::exception ex)
+				catch (std::exception &ex)
 				{
 					is_error = true;
 				}

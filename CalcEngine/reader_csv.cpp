@@ -2,17 +2,18 @@
 #include <algorithm>
 
 reader_csv::reader_csv(std::string location, bool header)
-{	
+{
+	(void)header; //TODO - Handle headers in csv provided.
 	_ifstream.open(location);
 	_ifstream.seekg(0, std::ios::end);
-	_file_length = _ifstream.tellg();
+	_stream_length = _ifstream.tellg();
 	_ifstream.seekg(0, std::ios::beg);
 	find_start();
 }
 
 reader_csv::reader_csv(std::string location, std::vector<std::string> expectedHeaders) : reader_csv::reader_csv(location)
 {
-	
+	(void)expectedHeaders; //TODO - Validate provided headers.
 }
 
 std::vector<std::string> reader_csv::read_line()
@@ -21,16 +22,16 @@ std::vector<std::string> reader_csv::read_line()
 	std::string value = "";
 	bool row_end = false;
 
-	while (row_end == 0 && (_file_length > 0 || _buffer_length > 0))
+	while (row_end == 0 && (_stream_length > 0 || _buffer_length > 0))
 	{
 		//Read from file stream if buffer has reached its end.
 		if (_buffer_position == _buffer_length)
 		{
 			std::streamsize buffer_max = CSV_READER_BUFFER_LENGTH;
-			_buffer_length = std::min(_file_length, buffer_max);
+			_buffer_length = std::min(_stream_length, buffer_max);
 			_ifstream.read(_buffer, _buffer_length);
 			_buffer_position = 0;
-			_file_length -= _buffer_length;
+			_stream_length -= _buffer_length;
 		}
 
 		while(row_end == 0 && _buffer_position < _buffer_length)
@@ -71,13 +72,13 @@ std::vector<std::string> reader_csv::read_line()
 void reader_csv::find_start()
 {
 	//Detect Byte Order Mark
-	if (_file_length >= 3)
+	if (_stream_length >= 3)
 	{
 		char begChars[3];
 		_ifstream.read(begChars, 3);
 		if (begChars[0] == '\xEF' && begChars[1] == '\xBB' && begChars[2] == '\xBF')
 		{
-			_file_length -= 3;
+			_stream_length -= 3;
 		}
 		else
 		{
@@ -89,7 +90,7 @@ void reader_csv::find_start()
 void reader_csv::iterator::next()
 {
 	entry_row.clear();
-	if (_reader->_buffer_length > 0 || _reader->_file_length > 0)
+	if (_reader->_buffer_length > 0 || _reader->_stream_length > 0)
 	{
 		auto entry = _reader->read_line();
 		entry_row = entry;

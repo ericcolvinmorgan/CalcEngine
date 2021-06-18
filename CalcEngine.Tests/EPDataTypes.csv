@@ -1,0 +1,5 @@
+﻿Reference,Name,Data Type,Data Parameters,
+Calculation-F7,Earnings,Value,,
+Accum E and P and Taxes-D7,Beginning E&P,Rollover,Accum E and P and Taxes-D24,ParentID
+Accum E and P and Taxes-D17,Distributions,Value,,
+Accum E and P and Taxes-D24,Ending E&P,Output,,
