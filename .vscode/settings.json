@@ -59,6 +59,7 @@
         "thread": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp"
-    },
-    "python.pythonPath": "Web.API/venv/bin/python3.7"
+    },    
+    "python.pythonPath": "Web.API/venv/bin/python3.7",
+    "dotnet-test-explorer.testProjectPath": "**/*Tests.csproj"
 }

@@ -14,21 +14,19 @@
 
 int main(int argc, char** argv)
 {
-	Logging::LoggerInterface* logger1;
-	Logging::LoggerInterface* logger2;
+	Logging::LoggerInterface* logger;
 
 	auto consoleLogger = Logging::ConsoleLogger(Logging::LogLevel::Error);
-	logger1 = &consoleLogger;
+	logger = &consoleLogger;
 
-	if (argc != 4)
+	if (argc != 5)
 	{
-		std::cout << "Please provide the following file location parameters: calculation definition JSON, data types definition CSV, calculation values CSV";
+		std::cout << "Please provide the following file location parameters: <calculation definition JSON path> <data types definition CSV path> <calculation values CSV path> <CSV output path>";
 	}
 	else
 	{
 		std::stringstream messages;
 		messages << "CALCULATION START\n";
-		logger1->Log(Logging::LogLevel::Error, messages);
 		std::string jsonPath = argv[1];
 		std::string dataTypesPath = argv[2];
 		std::string valuesPath = argv[3];
@@ -41,7 +39,8 @@ int main(int argc, char** argv)
 		manager.run_calc(iomanager);
 		auto end = std::chrono::steady_clock::now();
 		std::chrono::duration<double> elapsed_seconds = end - start;
-		std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+		
+		messages << "elapsed time: " << elapsed_seconds.count() << "s\n";
 
 		int scen = 1;
 		for (auto entity : iomanager._input_order)
@@ -53,5 +52,7 @@ int main(int argc, char** argv)
 			}
 			std::cout << '\n';
 		}
+		
+		logger->Log(Logging::LogLevel::Error, messages);
 	}
 }

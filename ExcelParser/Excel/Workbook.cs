@@ -102,9 +102,9 @@ namespace ExcelParser.Excel
             return true;
         }
 
-        public bool SaveAsJSON()
+        public bool SaveAsJSON(Stream output)
         {
-            using (var sw = new StreamWriter(@"C:\Users\ericm\Documents\source\repos\CalcEngine\ExcelParser.Tests\TestFiles\TestFile.json"))
+            var sw = new StreamWriter(output);
             using (var writer = new JsonTextWriter(sw))
             {
                 var ser = new JsonSerializer();

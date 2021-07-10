@@ -12,11 +12,10 @@ namespace ExcelParser.Tests
         public void TestMethod1()
         {
             ExcelParser.Excel.Workbook excel = new Excel.Workbook();
-            //Assert.IsTrue(excel.LoadExcel("../../../TestFiles/Basic1.xlsx"));
-            Assert.IsTrue(excel.LoadExcel(@"C:\Users\ericm\TestingFiles\EPCalcTemplate-LessComplex.xlsx"));
+            Assert.IsTrue(excel.LoadExcel("../../../TestFiles/Basic1.xlsx"));
+            //Assert.IsTrue(excel.LoadExcel(@"C:\Users\ericm\TestingFiles\EPCalcTemplate-LessComplex.xlsx"));
             excel.ExtractCellDetail();
             excel.BuildCalculationChain();
-            excel.SaveAsJSON();
 
             foreach(var detailItem in excel.CellDetails.Values)
             {
