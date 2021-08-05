@@ -10,6 +10,6 @@ ConsoleLogger::ConsoleLogger(LogLevel logLevel) :
 
 void ConsoleLogger::Log(LogLevel logLevel, const std::stringstream& message)
 {
-    if(_logLevel > logLevel)
+    if(_logLevel >= logLevel)
         std::cout << message.str();
 }

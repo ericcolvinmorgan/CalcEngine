@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 #include <chrono>
-#include <ctime>   
+#include <ctime>
 #include <fstream>
 #include <string>
 #include <sstream>
@@ -12,9 +12,9 @@
 #include "../CalcEngine/logging/logger_interface.h"
 #include "../CalcEngine/logging/console_log.h"
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
-	Logging::LoggerInterface* logger;
+	Logging::LoggerInterface *logger;
 
 	auto consoleLogger = Logging::ConsoleLogger(Logging::LogLevel::Error);
 	logger = &consoleLogger;
@@ -26,12 +26,12 @@ int main(int argc, char** argv)
 	else
 	{
 		std::stringstream messages;
-		messages << "CALCULATION START\n";
 		std::string jsonPath = argv[1];
 		std::string dataTypesPath = argv[2];
 		std::string valuesPath = argv[3];
+		std::string outputPath = argv[4];
 		io_manager iomanager(dataTypesPath, valuesPath);
-				
+
 		calc_manager manager;
 		manager.load_from_json(jsonPath);
 
@@ -39,20 +39,46 @@ int main(int argc, char** argv)
 		manager.run_calc(iomanager);
 		auto end = std::chrono::steady_clock::now();
 		std::chrono::duration<double> elapsed_seconds = end - start;
-		
+
 		messages << "elapsed time: " << elapsed_seconds.count() << "s\n";
 
 		int scen = 1;
+		std::vector<std::string> output_headers;
+		for (auto output = iomanager._output_types.begin(); output != iomanager._output_types.end(); output++)
+		{
+			output_headers.push_back(output->first);
+		}
+
+		std::sort(output_headers.begin(), output_headers.end());
+
+		//Save Output
+		std::filebuf buf;
+		buf.open(outputPath, std::ios::out);
+		std::ostream outputStream(&buf);
+
+		for (int s = 0; s < output_headers.size(); s++)
+		{
+			outputStream << output_headers[s];
+			if (s < output_headers.size() - 1)
+				outputStream << ",";
+			else
+				outputStream << "\n";
+		}
+
 		for (auto entity : iomanager._input_order)
 		{
 			auto entry = iomanager._inputs.at(entity);
-			for (auto value : entry)
+			for (int s = 0; s < output_headers.size(); s++)
 			{
-				std::cout << value.first << ": " << value.second.value << " ";
+				outputStream << entry[output_headers[s]].value;
+				if (s < output_headers.size() - 1)
+					outputStream << ",";
+				else
+					outputStream << "\n";
 			}
-			std::cout << '\n';
 		}
-		
+		buf.close();
+
 		logger->Log(Logging::LogLevel::Error, messages);
 	}
 }

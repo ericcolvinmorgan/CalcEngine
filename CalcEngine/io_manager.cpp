@@ -46,15 +46,11 @@ void io_manager::_build_data_types(std::string data_types_path)
 		{
 		case io_type::type_enum::value:
 		case io_type::type_enum::rollover:
-			_input_types.emplace(std::piecewise_construct,
-				std::forward_as_tuple(entry[0]),
-				std::forward_as_tuple(io_type{ entry[1], entry_type, params }));
+			_input_types[entry[0]] = { entry[1], entry_type, params };
 			break;
 
 		case io_type::type_enum::output:
-			_output_types.emplace(std::piecewise_construct,
-				std::forward_as_tuple(entry[0]),
-				std::forward_as_tuple(io_type{ entry[1], entry_type, params }));
+			_output_types[entry[0]] = { entry[1], entry_type, params };
 			break;
 
 		case io_type::type_enum::invalid:
@@ -102,15 +98,11 @@ void io_manager::_build_inputs(std::string values_path)
 
 				if (!is_error)
 				{
-					records.emplace(std::piecewise_construct,
-						std::forward_as_tuple(headers[i]),
-						std::forward_as_tuple(io_value{ is_numeric, numeric_value, entry[i] }));
+					records[headers[i]] = { is_numeric, numeric_value, entry[i] };
 				}
 			}
 
-			_inputs.emplace(std::piecewise_construct,
-				std::forward_as_tuple(entry[0]),
-				std::forward_as_tuple(records));
+			_inputs[entry[0]] = records;
 
 			_input_order.push_back(entry[0]);
 		}
